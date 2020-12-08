@@ -45,9 +45,8 @@ else:
         updateheaders = {'X-Auth-Email':email, 'X-Auth-Key':authkey,'Content-Type':'application/json'}
         data = {"type":"A","name":name,"content":ip,"ttl":"1","proxied":prox}
         updateresult = json.loads(requests.put(cloudflareupdateapi, headers=updateheaders, json=data).text)
-        #print(updateresult)
         if 'success' in updateresult:
-            with open('lastip.txt', 'w') as writer:
+            with open(os.path.join(here, 'lastip.txt'), 'w') as writer:
                 writer.write(ip)
             print(dt_string, 'Result: Success= new ip:', ip)
         else:
