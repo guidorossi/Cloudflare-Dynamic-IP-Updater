@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 import json
 import sys
+import re
 
 #complete this
 email = 'me@domain.com' #account email
@@ -22,6 +23,11 @@ try:
 except:
      print(dt_string, 'Error Connecting to ipify.org API')
      sys.exit(1)
+
+ipregex = "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
+if not (re.search(ipregex, ip)):
+    print(dt_string, 'Error Connecting to IP API')
+    sys.exit(1)    
 
 #   INFO
 #cloudflareinfoapi = 'https://api.cloudflare.com/client/v4/zones/'+zoneid+'/dns_records?type=A'
